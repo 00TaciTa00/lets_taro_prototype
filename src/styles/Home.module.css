@@ -15,3 +15,10 @@
 .div {
   padding: 32px;
 }
+
+.deck {
+  position: absolute;
+  width: fit-content;
+  /* z-index: cards.length - index;
+  transform: translate(${index}px, ${index / 5}px); */
+}
