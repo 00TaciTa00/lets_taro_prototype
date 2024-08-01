@@ -1,17 +1,15 @@
 /* components/TaroCard.module.css */
 .card {
-  display: inline-grid;
+  display: relative;
   border-radius: 8px;
   width: 200px;
-  height: 300px;
-  perspective: 800px;
-  cursor: pointer;
+  perspective: 300px;
 }
 
 .card_inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  width: 200px;
+  height: 300px;
   transition: transform 0.3s;
   transform-style: preserve-3d;
 }
@@ -20,14 +18,18 @@
   transform: rotateY(180deg);
 }
 
+.selected{
+  transform: translateY(350px);
+}
+
 .card_front, .card_back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 300px;
   backface-visibility: hidden;
 }
 
 .card_front {
+  position: absolute;
   transform: rotateY(180deg);
   display: flex;
   justify-content: center;
@@ -35,7 +37,7 @@
 }
 
 .card_back {
-  /* 기본적으로 뒷면이 먼저 보임 */
+  position: absolute;
 }
 
 
@@ -46,7 +48,7 @@
   object-fit: cover;
 }
 
-.scale:hover{
+.hovered:hover{
   transform: scale(1.05);
   transition: 0.1s;
 

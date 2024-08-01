@@ -12,13 +12,22 @@
   }
 }
 
-.div {
-  padding: 32px;
+.deckContainer {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  width: 100%;
+  height: 100vh;
 }
 
 .deck {
   position: absolute;
   width: fit-content;
-  /* z-index: cards.length - index;
-  transform: translate(${index}px, ${index / 5}px); */
+  top: 0;
+  transition: transform 1s;
 }
+
