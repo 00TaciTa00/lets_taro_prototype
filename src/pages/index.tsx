@@ -11,7 +11,7 @@ export default function Home() {
   );
   const [isShuffling, setIsShuffling] = useState<boolean>(false);
   const [isSpread, setIsSpread] = useState<boolean>(false);
-  const [selectedValue, setSelectedValue] = useState<number>(0);
+  const [cardList, setCardList] = useState<number[]>([]);
 
   const startShuffling = async () => {
     setIsShuffling(true);
@@ -36,8 +36,19 @@ export default function Home() {
     setIsSpread(!isSpread);
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(Number(event.target.value));
+  const handleCardListChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(event.target.value);
+    setCardList(Array.from({ length: value }, (_, i) => i + 1));
+  };
+
+  const handleCardChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const value = Number(event.target.value);
+    const arr = [...cardList];
+    arr[index] = value;
+    setCardList(arr);
   };
 
   return (
@@ -52,17 +63,26 @@ export default function Home() {
           min="0"
           max="10"
           list="values"
-          value={selectedValue}
-          onChange={handleInputChange}
+          onChange={handleCardListChange}
         />
-        <label htmlFor="cards">
-          the selected&apos;s value: {selectedValue}
-        </label>
         <datalist id="values">
           <option value="0" label="0"></option>
           <option value="5" label="5"></option>
           <option value="10" label="10"></option>
         </datalist>
+        {cardList.map((selectedCard, index) => (
+          <span key={index}>
+            {index} :{" "}
+            <input
+              type="number"
+              defaultValue={selectedCard}
+              min={1}
+              max={78}
+              style={{ display: "inline-block", width: "32px" }}
+              onChange={(event) => handleCardChange(event, index)}
+            />
+          </span>
+        ))}
       </header>
       <main className={styles.mainpage}>
         <div className={styles.deck}>
@@ -93,12 +113,17 @@ export default function Home() {
         <div
           className={styles.selected_cards}
           style={{
-            gridTemplateColumns: `repeat(${selectedValue}, 1fr)`,
+            gridTemplateColumns: `repeat(${cardList.length}, 1fr)`,
           }}
         >
-          {Array.from({ length: selectedValue }, (_, i) => (
-            <div key={i} className={styles.selected_card}>
-              {i + 1}
+          {cardList.map((selectedCard, index) => (
+            <div key={index} className={styles.selected_card}>
+              <TaroCard
+                name={`${index} : ${selectedCard.toString()}`}
+                index={index}
+                foreImage={foreImage}
+                isFlipAble
+              />
             </div>
           ))}
         </div>
