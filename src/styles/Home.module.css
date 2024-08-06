@@ -16,6 +16,8 @@
   height: 5vh;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  gap: 6px;
 }
 
 .mainpage {
@@ -57,10 +59,11 @@
 .selected_cards {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   margin: 0 auto;
   gap: 12px;
+  align-items: center;
+  justify-content: center;
 
   border: 1px solid green;
 }

@@ -11,6 +11,7 @@ export default function Home() {
   );
   const [isShuffling, setIsShuffling] = useState<boolean>(false);
   const [isSpread, setIsSpread] = useState<boolean>(false);
+  const [selectedValue, setSelectedValue] = useState<number>(0);
 
   const startShuffling = async () => {
     setIsShuffling(true);
@@ -34,17 +35,34 @@ export default function Home() {
   const spreadDeck = () => {
     setIsSpread(!isSpread);
   };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedValue(Number(event.target.value));
+  };
+
   return (
     <>
       <header className={styles.header}>
         <h1>Let&apos;s Taro!</h1>
         <button onClick={shuffleDeck}>섞기</button>
         <button onClick={spreadDeck}>펼치기</button>
-        {/* {cards.map((card, index) => (
-          <span key={card}>
-            {card}:{index}{" "}
-          </span>
-        ))} */}
+        <input
+          type="range"
+          id="cards"
+          min="0"
+          max="10"
+          list="values"
+          value={selectedValue}
+          onChange={handleInputChange}
+        />
+        <label htmlFor="cards">
+          the selected&apos;s value: {selectedValue}
+        </label>
+        <datalist id="values">
+          <option value="0" label="0"></option>
+          <option value="5" label="5"></option>
+          <option value="10" label="10"></option>
+        </datalist>
       </header>
       <main className={styles.mainpage}>
         <div className={styles.deck}>
@@ -72,17 +90,17 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <div className={styles.selected_cards}>
-          <div className={styles.selected_card}>1</div>
-          <div className={styles.selected_card}>2</div>
-          <div className={styles.selected_card}>3</div>
-          <div className={styles.selected_card}>4</div>
-          <div className={styles.selected_card}>5</div>
-          <div className={styles.selected_card}>6</div>
-          <div className={styles.selected_card}>7</div>
-          <div className={styles.selected_card}>8</div>
-          <div className={styles.selected_card}>9</div>
-          <div className={styles.selected_card}>10</div>
+        <div
+          className={styles.selected_cards}
+          style={{
+            gridTemplateColumns: `repeat(${selectedValue}, 1fr)`,
+          }}
+        >
+          {Array.from({ length: selectedValue }, (_, i) => (
+            <div key={i} className={styles.selected_card}>
+              {i + 1}
+            </div>
+          ))}
         </div>
       </main>
       <footer>zz</footer>
