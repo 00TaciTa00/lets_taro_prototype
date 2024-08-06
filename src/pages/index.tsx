@@ -36,21 +36,30 @@ export default function Home() {
   };
   return (
     <>
-      <main>
+      <header className={styles.header}>
+        <h1>Let&apos;s Taro!</h1>
         <button onClick={shuffleDeck}>섞기</button>
         <button onClick={spreadDeck}>펼치기</button>
-        <div className={styles.deckContainer}>
+        {/* {cards.map((card, index) => (
+          <span key={card}>
+            {card}:{index}{" "}
+          </span>
+        ))} */}
+      </header>
+      <main className={styles.mainpage}>
+        <div className={styles.deck}>
+          <p>deck</p>
           {cards.map((card, index) => (
             <div
               key={card}
-              className={styles.deck}
+              className={`${styles.card}`}
               style={{
-                zIndex: cards.length - index,
+                zIndex: 78 - index,
                 transform: !isSpread
                   ? isShuffling
                     ? `translate(${index / 2}px, ${index / 5}px)`
                     : `translate(0)`
-                  : `translate(${(-39 + index) * 11}px)`,
+                  : `translate(${(-39 + index) * 12}px)`,
               }}
             >
               <TaroCard
@@ -58,13 +67,25 @@ export default function Home() {
                 index={index}
                 foreImage={foreImage}
                 isHoverAble={isSpread ? true : false}
-                isSelecteAble={isSpread ? true : false}
                 onSelect={() => console.log(`Card ${card} clicked`)}
               />
             </div>
           ))}
         </div>
+        <div className={styles.selected_cards}>
+          <div className={styles.selected_card}>1</div>
+          <div className={styles.selected_card}>2</div>
+          <div className={styles.selected_card}>3</div>
+          <div className={styles.selected_card}>4</div>
+          <div className={styles.selected_card}>5</div>
+          <div className={styles.selected_card}>6</div>
+          <div className={styles.selected_card}>7</div>
+          <div className={styles.selected_card}>8</div>
+          <div className={styles.selected_card}>9</div>
+          <div className={styles.selected_card}>10</div>
+        </div>
       </main>
+      <footer>zz</footer>
     </>
   );
 }

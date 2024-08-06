@@ -9,7 +9,6 @@ interface TaroCardProps {
   foreImage: string; // 카드 앞면 이미지 URL
   isFlipAble?: boolean; // 뒤집을 수 있는 지
   isHoverAble?: boolean; // 호버하면 카드가 커지는 지
-  isSelecteAble?: boolean;
   onSelect?: () => void; // 카드 클릭 시 호출되는 함수
 }
 
@@ -18,15 +17,12 @@ const backImage =
 
 const TaroCard: React.FC<TaroCardProps> = ({
   name,
-  index,
   foreImage,
   isFlipAble = false,
   isHoverAble = false,
-  isSelecteAble = false,
   onSelect,
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
 
   const handleFlip = () => {
     if (isFlipAble) {
@@ -34,18 +30,9 @@ const TaroCard: React.FC<TaroCardProps> = ({
     }
   };
 
-  const handleSelect = () => {
-    if (isSelecteAble) {
-      console.log(`Card ${name} clicked`);
-      setIsSelected(!isSelected);
-    }
-  };
-
   return (
     <div
-      className={`${styles.card} ${isFlipped ? styles.flipped : ""} ${
-        isSelected ? styles.selected : ""
-      }`}
+      className={`${styles.card} ${isFlipped && styles.flipped}`}
       onClick={handleFlip}
     >
       <div className={styles.card_inner}>
@@ -53,20 +40,18 @@ const TaroCard: React.FC<TaroCardProps> = ({
           <Image
             src={foreImage}
             alt={name}
-            width={200}
-            height={300}
+            width={150}
+            height={275}
             className={`${styles.image} ${isHoverAble ? styles.hovered : ""}`}
           />
-          <div className={styles.info}>
-            <h2 className={styles.title}>{name}</h2>
-          </div>
+          <h2 className={styles.name}>{name}</h2>
         </div>
-        <div className={styles.card_back} onClick={handleSelect}>
+        <div className={styles.card_back}>
           <Image
             src={backImage}
             alt={name}
-            width={200}
-            height={300}
+            width={150}
+            height={275}
             className={`${styles.image} ${isHoverAble ? styles.hovered : ""}`}
           />
         </div>
