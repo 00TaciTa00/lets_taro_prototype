@@ -12,13 +12,68 @@
   }
 }
 
-.div {
-  padding: 32px;
+.header {
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.mainpage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 320px;
+
+  overflow: hidden;
+
+  width: 100%;
+  height: 90vh;
+
+  border: 1px solid black;
+  background-color: khaki;
 }
 
 .deck {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  
+  border: 1px solid blue;
+}
+
+.card {
   position: absolute;
   width: fit-content;
-  /* z-index: cards.length - index;
-  transform: translate(${index}px, ${index / 5}px); */
+  top: 8px;
+  transition: transform 1s;
+
+  border: 1px solid red;
+}
+
+.selected_cards {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr;
+  margin: 0 auto;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid green;
+}
+
+.selected_card {
+  border: 1px solid lime;
+  width: 150px;
+  height: 275px;
+}
+
+.footer {
+  height: 5vh;
 }

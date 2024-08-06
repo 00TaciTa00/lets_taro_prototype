@@ -5,10 +5,11 @@ import styles from "@/styles/TaroCard.module.css";
 
 interface TaroCardProps {
   name: string; // 카드의 이름
+  index: number;
   foreImage: string; // 카드 앞면 이미지 URL
   isFlipAble?: boolean; // 뒤집을 수 있는 지
   isHoverAble?: boolean; // 호버하면 카드가 커지는 지
-  onClick?: () => void; // 카드 클릭 시 호출되는 함수
+  onSelect?: () => void; // 카드 클릭 시 호출되는 함수
 }
 
 const backImage =
@@ -19,42 +20,39 @@ const TaroCard: React.FC<TaroCardProps> = ({
   foreImage,
   isFlipAble = false,
   isHoverAble = false,
-  onClick,
+  onSelect,
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
-  const handleClick = () => {
+  const handleFlip = () => {
     if (isFlipAble) {
       setIsFlipped(!isFlipped);
     }
-    if (onClick) onClick();
   };
 
   return (
     <div
-      className={`${styles.card} ${isFlipped ? styles.flipped : ""}`}
-      onClick={handleClick}
+      className={`${styles.card} ${isFlipped && styles.flipped}`}
+      onClick={handleFlip}
     >
       <div className={styles.card_inner}>
         <div className={styles.card_front}>
           <Image
             src={foreImage}
             alt={name}
-            width={200}
-            height={300}
-            className={`${styles.image} ${isHoverAble ? styles.scale : ""}`}
+            width={150}
+            height={275}
+            className={`${styles.image} ${isHoverAble ? styles.hovered : ""}`}
           />
-          <div className={styles.info}>
-            <h2 className={styles.title}>{name}</h2>
-          </div>
+          <h2 className={styles.name}>{name}</h2>
         </div>
         <div className={styles.card_back}>
           <Image
             src={backImage}
             alt={name}
-            width={200}
-            height={300}
-            className={`${styles.image} ${isHoverAble ? styles.scale : ""}`}
+            width={150}
+            height={275}
+            className={`${styles.image} ${isHoverAble ? styles.hovered : ""}`}
           />
         </div>
       </div>
