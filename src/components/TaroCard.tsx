@@ -1,7 +1,8 @@
-// components/TaroCard.tsx
-import { useState } from "react";
+import { FC, useState, useRef } from "react";
 import Image from "next/image";
 import styles from "@/styles/TaroCard.module.css";
+import { useDrag, DragSourceMonitor } from "react-dnd";
+import { ItemTypes } from "@/types/items";
 
 interface TaroCardProps {
   name: string; // 카드의 이름
@@ -15,14 +16,37 @@ interface TaroCardProps {
 const backImage =
   "https://images.unsplash.com/photo-1577084381380-3b9ea4153664?q=80&w=2612&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-const TaroCard: React.FC<TaroCardProps> = ({
+interface DropResult {
+  name: string;
+}
+
+const TaroCard: FC<TaroCardProps> = ({
   name,
+  index,
   foreImage,
   isFlipAble = false,
   isHoverAble = false,
   onSelect,
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null); // useRef로 HTMLDivElement를 참조
+
+  const [{ isDragging }, drag] = useDrag({
+    type: ItemTypes.CARD,
+    item: { name, index }, // 'card' 타입 드래깅 객체에 할당할 정보
+    collect: (monitor: DragSourceMonitor) => ({
+      isDragging: monitor.isDragging(), // 현재 드래깅 중인지 아닌지를 리턴
+    }),
+    end: (item, monitor) => {
+      // 드래그가 끝나면 작동
+      const dropResult = monitor.getDropResult<DropResult>();
+      if (item && dropResult) {
+        alert(`You dropped ${item.name} into ${dropResult.name}!`);
+      }
+    },
+  });
+
+  drag(cardRef); // drag 함수를 ref에 연결
 
   const handleFlip = () => {
     if (isFlipAble) {
@@ -32,8 +56,10 @@ const TaroCard: React.FC<TaroCardProps> = ({
 
   return (
     <div
-      className={`${styles.card} ${isFlipped && styles.flipped}`}
+      className={`${styles.card} ${isFlipped ? styles.flipped : ""}`}
       onClick={handleFlip}
+      ref={cardRef} // cardRef를 div의 ref에 전달
+      style={{ opacity: isDragging ? 0.5 : 1 }} // 드래깅 중이면 투명도를 낮춤
     >
       <div className={styles.card_inner}>
         <div className={styles.card_front}>

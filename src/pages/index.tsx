@@ -1,6 +1,9 @@
 import styles from "@/styles/Home.module.css";
 import { useState } from "react";
 import TaroCard from "@/components/TaroCard";
+import { useDrop, DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { CardPlace } from "@/components/CardPlace";
 
 const foreImage =
   "https://images.unsplash.com/photo-1498612753354-772a30629934?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
@@ -84,50 +87,45 @@ export default function Home() {
           </span>
         ))}
       </header>
-      <main className={styles.mainpage}>
-        <div className={styles.deck}>
-          <p>deck</p>
-          {cards.map((card, index) => (
-            <div
-              key={card}
-              className={`${styles.card}`}
-              style={{
-                zIndex: 78 - index,
-                transform: !isSpread
-                  ? isShuffling
-                    ? `translate(${index / 2}px, ${index / 5}px)`
-                    : `translate(0)`
-                  : `translate(${(-39 + index) * 12}px)`,
-              }}
-            >
-              <TaroCard
-                name={card.toString()}
-                index={index}
-                foreImage={foreImage}
-                isHoverAble={isSpread ? true : false}
-                onSelect={() => console.log(`Card ${card} clicked`)}
-              />
-            </div>
-          ))}
-        </div>
-        <div
-          className={styles.selected_cards}
-          style={{
-            gridTemplateColumns: `repeat(${cardList.length}, 1fr)`,
-          }}
-        >
-          {cardList.map((selectedCard, index) => (
-            <div key={index} className={styles.selected_card}>
-              <TaroCard
-                name={`${index} : ${selectedCard.toString()}`}
-                index={index}
-                foreImage={foreImage}
-                isFlipAble
-              />
-            </div>
-          ))}
-        </div>
-      </main>
+      <DndProvider backend={HTML5Backend}>
+        <main className={styles.mainpage}>
+          <div className={styles.deck}>
+            <p>deck</p>
+            {cards.map((card, index) => (
+              <div
+                key={card}
+                className={`${styles.card}`}
+                style={{
+                  zIndex: 78 - index,
+                  transform: !isSpread
+                    ? isShuffling
+                      ? `translate(${index / 2}px, ${index / 5}px)`
+                      : `translate(0)`
+                    : `translate(${(-39 + index) * 12}px)`,
+                }}
+              >
+                <TaroCard
+                  name={card.toString()}
+                  index={index}
+                  foreImage={foreImage}
+                  isHoverAble={isSpread ? true : false}
+                  onSelect={() => console.log(`Card ${card} clicked`)}
+                />
+              </div>
+            ))}
+          </div>
+          <div
+            className={styles.selected_cards}
+            style={{
+              gridTemplateColumns: `repeat(${cardList.length}, 1fr)`,
+            }}
+          >
+            {cardList.map((selectedCard, index) => (
+              <CardPlace key={index} />
+            ))}
+          </div>
+        </main>
+      </DndProvider>
       <footer>zz</footer>
     </>
   );
