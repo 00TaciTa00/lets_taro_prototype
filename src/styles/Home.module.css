@@ -56,7 +56,7 @@
   border: 1px solid red;
 }
 
-.selected_cards {
+.place_section {
   position: relative;
   display: grid;
   grid-template-rows: 1fr;

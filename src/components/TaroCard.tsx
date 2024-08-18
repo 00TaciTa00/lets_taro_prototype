@@ -59,7 +59,7 @@ const TaroCard: FC<TaroCardProps> = ({
       className={`${styles.card} ${isFlipped ? styles.flipped : ""}`}
       onClick={handleFlip}
       ref={cardRef} // cardRef를 div의 ref에 전달
-      style={{ opacity: isDragging ? 0.5 : 1 }} // 드래깅 중이면 투명도를 낮춤
+      style={{ opacity: isDragging ? 0 : 1 }} // 드래깅 중이면 투명도를 낮춤
     >
       <div className={styles.card_inner}>
         <div className={styles.card_front}>
