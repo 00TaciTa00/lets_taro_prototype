@@ -1,5 +1,7 @@
 import styles from "@/styles/Home.module.css";
 import { useState } from "react";
+import TestCard from "@/components/TestCard";
+import Layout from "@/components/Layout";
 import TaroCard from "@/components/TaroCard";
 
 const foreImage =
@@ -53,8 +55,7 @@ export default function Home() {
 
   return (
     <>
-      <header className={styles.header}>
-        <h1>Let&apos;s Taro!</h1>
+      <Layout>
         <button onClick={shuffleDeck}>섞기</button>
         <button onClick={spreadDeck}>펼치기</button>
         <input
@@ -83,52 +84,30 @@ export default function Home() {
             />
           </span>
         ))}
-      </header>
-      <main className={styles.mainpage}>
-        <div className={styles.deck}>
-          <p>deck</p>
-          {cards.map((card, index) => (
-            <div
-              key={card}
-              className={`${styles.card}`}
-              style={{
-                zIndex: 78 - index,
-                transform: !isSpread
-                  ? isShuffling
-                    ? `translate(${index / 2}px, ${index / 5}px)`
-                    : `translate(0)`
-                  : `translate(${(-39 + index) * 12}px)`,
-              }}
-            >
-              <TaroCard
-                name={card.toString()}
-                index={index}
-                foreImage={foreImage}
-                isHoverAble={isSpread ? true : false}
-                onSelect={() => console.log(`Card ${card} clicked`)}
-              />
-            </div>
-          ))}
-        </div>
-        <div
-          className={styles.selected_cards}
-          style={{
-            gridTemplateColumns: `repeat(${cardList.length}, 1fr)`,
-          }}
-        >
-          {cardList.map((selectedCard, index) => (
-            <div key={index} className={styles.selected_card}>
-              <TaroCard
-                name={`${index} : ${selectedCard.toString()}`}
-                index={index}
-                foreImage={foreImage}
-                isFlipAble
-              />
-            </div>
-          ))}
-        </div>
-      </main>
-      <footer>zz</footer>
+        <main className={styles.mainpage}>
+          <div className={styles.deck}>
+            {cards.map((card, index) => (
+              <div
+                key={card}
+                className={`${styles.card}`}
+                style={{
+                  zIndex: 78 - index,
+                  transform: !isSpread
+                    ? isShuffling
+                      ? `translate(${index / 2}px, ${index / 5}px)`
+                      : `translate(0)`
+                    : `translate(${(-39 + index) * 12}px)`,
+                }}
+              >
+                <TaroCard taroNumber={card} disabled />
+              </div>
+            ))}
+          </div>
+          <div className={`${styles.table}`}>
+            <TaroCard taroNumber={100} />
+          </div>
+        </main>
+      </Layout>
     </>
   );
 }
