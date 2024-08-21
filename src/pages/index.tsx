@@ -1,7 +1,6 @@
 import styles from "@/styles/Home.module.css";
 import { useState } from "react";
 import TestCard from "@/components/TestCard";
-import { PlaceSection } from "@/components/PlaceSection";
 import Layout from "@/components/Layout";
 import TaroCard from "@/components/TaroCard";
 
