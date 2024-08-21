@@ -1,88 +1,150 @@
-import { FC, useState, useRef } from "react";
-import Image from "next/image";
+import React, { useEffect, useRef, useState } from "react";
+import Draggable from "react-draggable";
 import styles from "@/styles/TaroCard.module.css";
-import { useDrag, DragSourceMonitor } from "react-dnd";
-import { ItemTypes } from "@/types/items";
+import { BackImage } from "@/types/types";
+import Image from "next/image";
 
-interface TaroCardProps {
-  name: string; // 카드의 이름
-  index: number;
-  foreImage: string; // 카드 앞면 이미지 URL
-  isFlipAble?: boolean; // 뒤집을 수 있는 지
-  isHoverAble?: boolean; // 호버하면 카드가 커지는 지
-  onSelect?: () => void; // 카드 클릭 시 호출되는 함수
+interface CardProps {
+  taroNumber: number;
+  disabled?: boolean;
+  isReversed?: boolean;
 }
 
-const backImage =
-  "https://images.unsplash.com/photo-1577084381380-3b9ea4153664?q=80&w=2612&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-
-interface DropResult {
-  name: string;
+interface InnerLayoutProps {
+  isFront: boolean;
+  isReversed?: boolean;
+  children: React.ReactNode;
+  onClick: () => void;
 }
 
-const TaroCard: FC<TaroCardProps> = ({
-  name,
-  index,
-  foreImage,
-  isFlipAble = false,
-  isHoverAble = false,
-  onSelect,
+interface CornerProps {
+  rotateDegree: number;
+  correction: number;
+  onClick: (currentDirection: string) => void;
+}
+
+const CardInner: React.FC<InnerLayoutProps> = ({
+  isFront,
+  isReversed = false,
+  children,
+  onClick,
 }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null); // useRef로 HTMLDivElement를 참조
+  return (
+    <div
+      className={`handle ${styles.inner_layout} ${
+        isFront
+          ? isReversed
+            ? styles.card_front_reversed
+            : styles.card_front
+          : styles.card_back
+      }`}
+      onClick={onClick}
+    >
+      {children}
+    </div>
+  );
+};
 
-  const [{ isDragging }, drag] = useDrag({
-    type: ItemTypes.CARD,
-    item: { name, index }, // 'card' 타입 드래깅 객체에 할당할 정보
-    collect: (monitor: DragSourceMonitor) => ({
-      isDragging: monitor.isDragging(), // 현재 드래깅 중인지 아닌지를 리턴
-    }),
-    end: (item, monitor) => {
-      // 드래그가 끝나면 작동
-      const dropResult = monitor.getDropResult<DropResult>();
-      if (item && dropResult) {
-        alert(`You dropped ${item.name} into ${dropResult.name}!`);
-      }
-    },
-  });
+const Corner: React.FC<CornerProps> = ({
+  rotateDegree,
+  correction,
+  onClick,
+}) => {
+  const directionList = ["top", "right", "bottom", "left"];
+  const [currentDirection, setCurrentDirection] = useState(
+    directionList[correction]
+  );
 
-  drag(cardRef); // drag 함수를 ref에 연결
-
-  const handleFlip = () => {
-    if (isFlipAble) {
-      setIsFlipped(!isFlipped);
+  useEffect(() => {
+    const currentRotate = rotateDegree % 360;
+    if (currentRotate === 0) {
+      setCurrentDirection(directionList[correction]);
+    } else if (currentRotate === 90 || currentRotate === -270) {
+      setCurrentDirection(directionList[(correction + 1) % 4]);
+    } else if (currentRotate === 180 || currentRotate === -180) {
+      setCurrentDirection(directionList[(correction + 2) % 4]);
+    } else if (currentRotate === 270 || currentRotate === -90) {
+      setCurrentDirection(directionList[(correction + 3) % 4]);
     }
-  };
+  }, [rotateDegree]);
 
   return (
     <div
-      className={`${styles.card} ${isFlipped ? styles.flipped : ""}`}
-      onClick={handleFlip}
-      ref={cardRef} // cardRef를 div의 ref에 전달
-      style={{ opacity: isDragging ? 0 : 1 }} // 드래깅 중이면 투명도를 낮춤
-    >
-      <div className={styles.card_inner}>
-        <div className={styles.card_front}>
-          <Image
-            src={foreImage}
-            alt={name}
-            width={150}
-            height={275}
-            className={`${styles.image} ${isHoverAble ? styles.hovered : ""}`}
+      className={`${styles.corner} ${styles[directionList[correction]]}`}
+      onClick={() => onClick(currentDirection)}
+    />
+  );
+};
+
+const TaroCard: React.FC<CardProps> = ({
+  taroNumber,
+  disabled = false,
+  isReversed = false,
+}) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [rotateDegree, setRotateDegree] = useState(0);
+
+  const handleRotate = (currentDirection: string) => {
+    if (disabled) return;
+    if (currentDirection === "right") {
+      setRotateDegree((prev) => prev + 90);
+    } else if (currentDirection === "left") {
+      setRotateDegree((prev) => prev - 90);
+    }
+  };
+
+  const handleFlip = () => {
+    if (disabled) return;
+    setIsFlipped(!isFlipped);
+  };
+
+  const getTransformStyle = () => {
+    let transform = `rotate(${rotateDegree}deg)`;
+    if (isFlipped) {
+      transform = `rotate(${-rotateDegree}deg) rotateY(180deg)`;
+    } else {
+      transform = `rotate(${rotateDegree}deg)`;
+    }
+    return { transform };
+  };
+
+  return (
+    <Draggable handle=".handle" bounds="parent" disabled={disabled}>
+      <div className={`${styles.card}`}>
+        <div className={styles.card_inner} style={getTransformStyle()}>
+          <Corner
+            rotateDegree={rotateDegree}
+            correction={0}
+            onClick={handleRotate}
           />
-          <h2 className={styles.name}>{name}</h2>
-        </div>
-        <div className={styles.card_back}>
-          <Image
-            src={backImage}
-            alt={name}
-            width={150}
-            height={275}
-            className={`${styles.image} ${isHoverAble ? styles.hovered : ""}`}
+          <Corner
+            rotateDegree={rotateDegree}
+            correction={1}
+            onClick={handleRotate}
           />
+          <Corner
+            rotateDegree={rotateDegree}
+            correction={2}
+            onClick={handleRotate}
+          />
+          <Corner
+            rotateDegree={rotateDegree}
+            correction={3}
+            onClick={handleRotate}
+          />
+          <CardInner
+            isFront={true}
+            isReversed={isReversed}
+            onClick={handleFlip}
+          >
+            {taroNumber} front {rotateDegree}
+          </CardInner>
+          <CardInner isFront={false} onClick={handleFlip}>
+            <Image src={BackImage} alt={taroNumber.toString()} fill />
+          </CardInner>
         </div>
       </div>
-    </div>
+    </Draggable>
   );
 };
 
