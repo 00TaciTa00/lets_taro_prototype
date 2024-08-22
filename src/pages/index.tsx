@@ -1,8 +1,7 @@
-import styles from "@/styles/Home.module.css";
 import { useState } from "react";
-import TestCard from "@/components/TestCard";
 import Layout from "@/components/Layout";
 import TaroCard from "@/components/TaroCard";
+import styles from "@/styles/Home.module.css";
 
 const foreImage =
   "https://images.unsplash.com/photo-1498612753354-772a30629934?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
@@ -38,52 +37,11 @@ export default function Home() {
     setIsSpread(!isSpread);
   };
 
-  const handleCardListChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(event.target.value);
-    setCardList(Array.from({ length: value }, (_, i) => i + 1));
-  };
-
-  const handleCardChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const value = Number(event.target.value);
-    const arr = [...cardList];
-    arr[index] = value;
-    setCardList(arr);
-  };
-
   return (
     <>
       <Layout>
         <button onClick={shuffleDeck}>섞기</button>
         <button onClick={spreadDeck}>펼치기</button>
-        <input
-          type="range"
-          id="cards"
-          min="0"
-          max="10"
-          list="values"
-          onChange={handleCardListChange}
-        />
-        <datalist id="values">
-          <option value="0" label="0"></option>
-          <option value="5" label="5"></option>
-          <option value="10" label="10"></option>
-        </datalist>
-        {cardList.map((selectedCard, index) => (
-          <span key={index}>
-            {index} :{" "}
-            <input
-              type="number"
-              defaultValue={selectedCard}
-              min={1}
-              max={78}
-              style={{ display: "inline-block", width: "32px" }}
-              onChange={(event) => handleCardChange(event, index)}
-            />
-          </span>
-        ))}
         <main className={styles.mainpage}>
           <div className={styles.deck}>
             {cards.map((card, index) => (
@@ -104,7 +62,16 @@ export default function Home() {
             ))}
           </div>
           <div className={`${styles.table}`}>
-            <TaroCard taroNumber={100} />
+            <TaroCard taroNumber={1} />
+            <TaroCard taroNumber={2} />
+            <TaroCard taroNumber={3} />
+            <TaroCard taroNumber={4} />
+            <TaroCard taroNumber={5} />
+            <TaroCard taroNumber={6} />
+            <TaroCard taroNumber={7} />
+            <TaroCard taroNumber={8} />
+            <TaroCard taroNumber={9} />
+            <TaroCard taroNumber={10} />
           </div>
         </main>
       </Layout>

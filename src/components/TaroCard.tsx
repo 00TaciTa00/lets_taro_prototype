@@ -10,11 +10,11 @@ interface CardProps {
   isReversed?: boolean;
 }
 
-interface InnerLayoutProps {
+interface CardInnerProps {
   isFront: boolean;
   isReversed?: boolean;
   children: React.ReactNode;
-  onClick: () => void;
+  onDoubleClick?: () => void;
 }
 
 interface CornerProps {
@@ -23,11 +23,11 @@ interface CornerProps {
   onClick: (currentDirection: string) => void;
 }
 
-const CardInner: React.FC<InnerLayoutProps> = ({
+const CardInner: React.FC<CardInnerProps> = ({
   isFront,
   isReversed = false,
   children,
-  onClick,
+  onDoubleClick,
 }) => {
   return (
     <div
@@ -38,7 +38,7 @@ const CardInner: React.FC<InnerLayoutProps> = ({
             : styles.card_front
           : styles.card_back
       }`}
-      onClick={onClick}
+      onDoubleClick={onDoubleClick}
     >
       {children}
     </div>
@@ -135,11 +135,11 @@ const TaroCard: React.FC<CardProps> = ({
           <CardInner
             isFront={true}
             isReversed={isReversed}
-            onClick={handleFlip}
+            onDoubleClick={handleFlip}
           >
             {taroNumber} front {rotateDegree}
           </CardInner>
-          <CardInner isFront={false} onClick={handleFlip}>
+          <CardInner isFront={false} onDoubleClick={handleFlip}>
             <Image src={BackImage} alt={taroNumber.toString()} fill />
           </CardInner>
         </div>

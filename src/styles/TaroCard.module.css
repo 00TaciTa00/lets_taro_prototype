@@ -3,7 +3,7 @@
   display: absolute;
   border-radius: 8px;
   width: fit-content;
-  perspective: 275px;
+  perspective: 220px;
   top: 0;
   transition: transform 1s;
 }
@@ -43,8 +43,8 @@
 
 .card_inner {
   position: relative;
-  width: 150px; 
-  height: 275px;
+  width: 120px; 
+  height: 220px;
   transition: transform 0.3s;
   transform-style: preserve-3d;
   border-radius: 8px;
@@ -58,8 +58,8 @@
 
 .inner_layout {
   position: absolute;
-  width: 130px;
-  height: 255px;
+  width: 100px;
+  height: 200px;
   backface-visibility: hidden;
   border-radius: 8px;
   
