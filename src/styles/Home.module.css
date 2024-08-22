@@ -35,6 +35,15 @@
   background-color: khaki;
 }
 
+.buttons {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  padding: 4px;
+  z-index: 100;
+}
+
 .deck {
   position: relative;
   display: flex;

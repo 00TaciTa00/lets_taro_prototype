@@ -40,9 +40,11 @@ export default function Home() {
   return (
     <>
       <Layout>
-        <button onClick={shuffleDeck}>섞기</button>
-        <button onClick={spreadDeck}>펼치기</button>
         <main className={styles.mainpage}>
+          <div className={styles.buttons}>
+            <button onClick={shuffleDeck}>섞기</button>
+            <button onClick={spreadDeck}>펼치기</button>
+          </div>
           <div className={styles.deck}>
             {cards.map((card, index) => (
               <div
