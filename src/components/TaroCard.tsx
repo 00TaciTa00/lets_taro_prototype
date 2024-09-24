@@ -1,80 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Draggable from "react-draggable";
 import styles from "@/styles/TaroCard.module.css";
 import { BackImage } from "@/types/types";
 import Image from "next/image";
+import useDoubleTouch from "@/util/onDoubleTouch";
+import TaroCorner from "./TaroCorner";
+import TaroInner from "./TaroInner";
 
 interface CardProps {
   taroNumber: number;
   disabled?: boolean;
   isReversed?: boolean;
 }
-
-interface CardInnerProps {
-  isFront: boolean;
-  isReversed?: boolean;
-  children: React.ReactNode;
-  onDoubleClick?: () => void;
-}
-
-interface CornerProps {
-  rotateDegree: number;
-  correction: number;
-  onClick: (currentDirection: string) => void;
-}
-
-const CardInner: React.FC<CardInnerProps> = ({
-  isFront,
-  isReversed = false,
-  children,
-  onDoubleClick,
-}) => {
-  return (
-    <div
-      className={`handle ${styles.inner_layout} ${
-        isFront
-          ? isReversed
-            ? styles.card_front_reversed
-            : styles.card_front
-          : styles.card_back
-      }`}
-      onDoubleClick={onDoubleClick}
-    >
-      {children}
-    </div>
-  );
-};
-
-const Corner: React.FC<CornerProps> = ({
-  rotateDegree,
-  correction,
-  onClick,
-}) => {
-  const directionList = ["top", "right", "bottom", "left"];
-  const [currentDirection, setCurrentDirection] = useState(
-    directionList[correction]
-  );
-
-  useEffect(() => {
-    const currentRotate = rotateDegree % 360;
-    if (currentRotate === 0) {
-      setCurrentDirection(directionList[correction]);
-    } else if (currentRotate === 90 || currentRotate === -270) {
-      setCurrentDirection(directionList[(correction + 1) % 4]);
-    } else if (currentRotate === 180 || currentRotate === -180) {
-      setCurrentDirection(directionList[(correction + 2) % 4]);
-    } else if (currentRotate === 270 || currentRotate === -90) {
-      setCurrentDirection(directionList[(correction + 3) % 4]);
-    }
-  }, [rotateDegree]);
-
-  return (
-    <div
-      className={`${styles.corner} ${styles[directionList[correction]]}`}
-      onClick={() => onClick(currentDirection)}
-    />
-  );
-};
 
 const TaroCard: React.FC<CardProps> = ({
   taroNumber,
@@ -93,17 +30,21 @@ const TaroCard: React.FC<CardProps> = ({
     }
   };
 
-  const handleFlip = () => {
+  const handleClickFlip = () => {
+    console.log("handleClickFlip");
     if (disabled) return;
     setIsFlipped(!isFlipped);
   };
 
+  const handleTouchFlip = useDoubleTouch(() => {
+    console.log("handleTouchFlip");
+    handleClickFlip();
+  });
+
   const getTransformStyle = () => {
     let transform = `rotate(${rotateDegree}deg)`;
     if (isFlipped) {
-      transform = `rotate(${-rotateDegree}deg) rotateY(180deg)`;
-    } else {
-      transform = `rotate(${rotateDegree}deg)`;
+      transform = `rotate(${rotateDegree}deg) rotateY(180deg)`;
     }
     return { transform };
   };
@@ -112,36 +53,41 @@ const TaroCard: React.FC<CardProps> = ({
     <Draggable handle=".handle" bounds="parent" disabled={disabled}>
       <div className={`${styles.card}`}>
         <div className={styles.card_inner} style={getTransformStyle()}>
-          <Corner
+          <TaroCorner
             rotateDegree={rotateDegree}
             correction={0}
             onClick={handleRotate}
           />
-          <Corner
+          <TaroCorner
             rotateDegree={rotateDegree}
             correction={1}
             onClick={handleRotate}
           />
-          <Corner
+          <TaroCorner
             rotateDegree={rotateDegree}
             correction={2}
             onClick={handleRotate}
           />
-          <Corner
+          <TaroCorner
             rotateDegree={rotateDegree}
             correction={3}
             onClick={handleRotate}
           />
-          <CardInner
+          <TaroInner
             isFront={true}
             isReversed={isReversed}
-            onDoubleClick={handleFlip}
+            onDoubleClick={handleClickFlip}
+            onDoubleTouch={handleTouchFlip}
           >
             {taroNumber} front {rotateDegree}
-          </CardInner>
-          <CardInner isFront={false} onDoubleClick={handleFlip}>
+          </TaroInner>
+          <TaroInner
+            isFront={false}
+            onDoubleClick={handleClickFlip}
+            onDoubleTouch={handleTouchFlip}
+          >
             <Image src={BackImage} alt={taroNumber.toString()} fill />
-          </CardInner>
+          </TaroInner>
         </div>
       </div>
     </Draggable>

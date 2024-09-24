@@ -1,14 +1,3 @@
-/* components/TaroCard.module.css */
-.card {
-  display: absolute;
-  border-radius: 8px;
-  width: fit-content;
-  height: fit-content;
-  perspective: 220px;
-  top: 0;
-  transition: transform 1s;
-}
-
 .card_inner {
   position: relative;
   width: 120px; 
