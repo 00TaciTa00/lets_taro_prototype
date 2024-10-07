@@ -6,6 +6,7 @@ import Image from "next/image";
 import useDoubleTouch from "@/util/onDoubleTouch";
 import TaroCorner from "./TaroCorner";
 import TaroInner from "./TaroInner";
+import taroInfo from "@/data/taroInfo.json";
 
 interface CardProps {
   taroNumber: number;
@@ -20,6 +21,7 @@ const TaroCard: React.FC<CardProps> = ({
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [rotateDegree, setRotateDegree] = useState(0);
+  const cardInfo = taroInfo.find((card) => card.id === taroNumber);
 
   const handleRotate = (currentDirection: string) => {
     if (disabled) return;
@@ -79,14 +81,18 @@ const TaroCard: React.FC<CardProps> = ({
             onDoubleClick={handleClickFlip}
             onDoubleTouch={handleTouchFlip}
           >
-            {taroNumber} front {rotateDegree}
+            {cardInfo?.romanNum} {cardInfo?.name} {rotateDegree}
           </TaroInner>
           <TaroInner
             isFront={false}
             onDoubleClick={handleClickFlip}
             onDoubleTouch={handleTouchFlip}
           >
-            <Image src={BackImage} alt={taroNumber.toString()} fill />
+            <Image
+              src={BackImage}
+              alt={cardInfo?.name?.toString() || "Taro Card"}
+              fill
+            />
           </TaroInner>
         </div>
       </div>
