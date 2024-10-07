@@ -1,0 +1,548 @@
+[
+  {
+    "id": 0,
+    "number": 1,
+    "romanNum": "I",
+    "name": "타로 1번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 1,
+    "number": 2,
+    "romanNum": "II",
+    "name": "타로 2번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 2,
+    "number": 3,
+    "romanNum": "III",
+    "name": "타로 3번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 3,
+    "number": 4,
+    "romanNum": "IV",
+    "name": "타로 4번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 4,
+    "number": 5,
+    "romanNum": "V",
+    "name": "타로 5번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 5,
+    "number": 6,
+    "romanNum": "VI",
+    "name": "타로 6번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 6,
+    "number": 7,
+    "romanNum": "VII",
+    "name": "타로 7번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 7,
+    "number": 8,
+    "romanNum": "VIII",
+    "name": "타로 8번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 8,
+    "number": 9,
+    "romanNum": "IX",
+    "name": "타로 9번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 9,
+    "number": 10,
+    "romanNum": "X",
+    "name": "타로 10번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 10,
+    "number": 11,
+    "romanNum": "XI",
+    "name": "타로 11번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 11,
+    "number": 12,
+    "romanNum": "XII",
+    "name": "타로 12번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 12,
+    "number": 13,
+    "romanNum": "XIII",
+    "name": "타로 13번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 13,
+    "number": 14,
+    "romanNum": "XIV",
+    "name": "타로 14번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 14,
+    "number": 15,
+    "romanNum": "XV",
+    "name": "타로 15번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 15,
+    "number": 16,
+    "romanNum": "XVI",
+    "name": "타로 16번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 16,
+    "number": 17,
+    "romanNum": "XVII",
+    "name": "타로 17번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 17,
+    "number": 18,
+    "romanNum": "XVIII",
+    "name": "타로 18번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 18,
+    "number": 19,
+    "romanNum": "XIX",
+    "name": "타로 19번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 19,
+    "number": 20,
+    "romanNum": "XX",
+    "name": "타로 20번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 20,
+    "number": 21,
+    "romanNum": "XXI",
+    "name": "타로 21번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 21,
+    "number": 22,
+    "romanNum": "XXII",
+    "name": "타로 22번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 22,
+    "number": 23,
+    "romanNum": "XXIII",
+    "name": "타로 23번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 23,
+    "number": 24,
+    "romanNum": "XXIV",
+    "name": "타로 24번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 24,
+    "number": 25,
+    "romanNum": "XXV",
+    "name": "타로 25번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 25,
+    "number": 26,
+    "romanNum": "XXVI",
+    "name": "타로 26번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 26,
+    "number": 27,
+    "romanNum": "XXVII",
+    "name": "타로 27번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 27,
+    "number": 28,
+    "romanNum": "XXVIII",
+    "name": "타로 28번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 28,
+    "number": 29,
+    "romanNum": "XXIX",
+    "name": "타로 29번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 29,
+    "number": 30,
+    "romanNum": "XXX",
+    "name": "타로 30번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 30,
+    "number": 31,
+    "romanNum": "XXXI",
+    "name": "타로 31번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 31,
+    "number": 32,
+    "romanNum": "XXXII",
+    "name": "타로 32번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 32,
+    "number": 33,
+    "romanNum": "XXXIII",
+    "name": "타로 33번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 33,
+    "number": 34,
+    "romanNum": "XXXIV",
+    "name": "타로 34번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 34,
+    "number": 35,
+    "romanNum": "XXXV",
+    "name": "타로 35번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 35,
+    "number": 36,
+    "romanNum": "XXXVI",
+    "name": "타로 36번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 36,
+    "number": 37,
+    "romanNum": "XXXVII",
+    "name": "타로 37번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 37,
+    "number": 38,
+    "romanNum": "XXXVIII",
+    "name": "타로 38번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 38,
+    "number": 39,
+    "romanNum": "XXXIX",
+    "name": "타로 39번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 39,
+    "number": 40,
+    "romanNum": "XL",
+    "name": "타로 40번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 40,
+    "number": 41,
+    "romanNum": "XLI",
+    "name": "타로 41번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 41,
+    "number": 42,
+    "romanNum": "XLII",
+    "name": "타로 42번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 42,
+    "number": 43,
+    "romanNum": "XLIII",
+    "name": "타로 43번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 43,
+    "number": 44,
+    "romanNum": "XLIV",
+    "name": "타로 44번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 44,
+    "number": 45,
+    "romanNum": "XLV",
+    "name": "타로 45번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 45,
+    "number": 46,
+    "romanNum": "XLVI",
+    "name": "타로 46번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 46,
+    "number": 47,
+    "romanNum": "XLVII",
+    "name": "타로 47번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 47,
+    "number": 48,
+    "romanNum": "XLVIII",
+    "name": "타로 48번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 48,
+    "number": 49,
+    "romanNum": "XLIX",
+    "name": "타로 49번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 49,
+    "number": 50,
+    "romanNum": "L",
+    "name": "타로 50번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 50,
+    "number": 51,
+    "romanNum": "LI",
+    "name": "타로 51번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 51,
+    "number": 52,
+    "romanNum": "LII",
+    "name": "타로 52번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 52,
+    "number": 53,
+    "romanNum": "LIII",
+    "name": "타로 53번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 53,
+    "number": 54,
+    "romanNum": "LIV",
+    "name": "타로 54번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 54,
+    "number": 55,
+    "romanNum": "LV",
+    "name": "타로 55번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 55,
+    "number": 56,
+    "romanNum": "LVI",
+    "name": "타로 56번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 56,
+    "number": 57,
+    "romanNum": "LVII",
+    "name": "타로 57번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 57,
+    "number": 58,
+    "romanNum": "LVIII",
+    "name": "타로 58번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 58,
+    "number": 59,
+    "romanNum": "LIX",
+    "name": "타로 59번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 59,
+    "number": 60,
+    "romanNum": "LX",
+    "name": "타로 60번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 60,
+    "number": 61,
+    "romanNum": "LXI",
+    "name": "타로 61번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 61,
+    "number": 62,
+    "romanNum": "LXII",
+    "name": "타로 62번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 62,
+    "number": 63,
+    "romanNum": "LXIII",
+    "name": "타로 63번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 63,
+    "number": 64,
+    "romanNum": "LXIV",
+    "name": "타로 64번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 64,
+    "number": 65,
+    "romanNum": "LXV",
+    "name": "타로 65번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 65,
+    "number": 66,
+    "romanNum": "LXVI",
+    "name": "타로 66번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 66,
+    "number": 67,
+    "romanNum": "LXVII",
+    "name": "타로 67번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 67,
+    "number": 68,
+    "romanNum": "LXVIII",
+    "name": "타로 68번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 68,
+    "number": 69,
+    "romanNum": "LXIX",
+    "name": "타로 69번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 69,
+    "number": 70,
+    "romanNum": "LXX",
+    "name": "타로 70번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 70,
+    "number": 71,
+    "romanNum": "LXXI",
+    "name": "타로 71번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 71,
+    "number": 72,
+    "romanNum": "LXXII",
+    "name": "타로 72번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 72,
+    "number": 73,
+    "romanNum": "LXXIII",
+    "name": "타로 73번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 73,
+    "number": 74,
+    "romanNum": "LXXIV",
+    "name": "타로 74번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 74,
+    "number": 75,
+    "romanNum": "LXXV",
+    "name": "타로 75번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 75,
+    "number": 76,
+    "romanNum": "LXXVI",
+    "name": "타로 76번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 76,
+    "number": 77,
+    "romanNum": "LXXVII",
+    "name": "타로 77번",
+    "image": "@/assets/foreImage.jpg"
+  },
+  {
+    "id": 77,
+    "number": 78,
+    "romanNum": "LXXVIII",
+    "name": "타로 78번",
+    "image": "@/assets/foreImage.jpg"
+  }
+]
